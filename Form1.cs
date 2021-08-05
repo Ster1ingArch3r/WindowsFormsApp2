@@ -92,8 +92,6 @@ namespace WindowsFormsApp2
                     spend = Convert.ToInt32(SpendBox.Text);
                     spend = spend + 3;
                     SpendBox.Text = spend.ToString();
-                    
-
                 }
                 ExpAddBox.Text = "";
             }
@@ -101,10 +99,6 @@ namespace WindowsFormsApp2
             {
                 MessageBox.Show("EXP Can only be whole numbers. You aren't allowed to math letters. This isn't high school algebra...");
             }
-
-
-              
-            
         }
 
         private void SaveProgress_Click(object sender, EventArgs e)
