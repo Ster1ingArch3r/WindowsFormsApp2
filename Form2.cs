@@ -726,8 +726,8 @@ namespace WindowsFormsApp2
                 SQLiteConnection conn = new SQLiteConnection("Data Source=characters.db;Version=3;Compress=True");
                 conn.Open();
                 SQLiteCommand saveChar = conn.CreateCommand();
-                saveChar.CommandText = "INSERT INTO saved_characters2(NAME, RACE, STRENGTH, DEXTERITY, CONSTITUTION, INTELLIGENCE, WISDOM, CHARISMA, LEVEL, EXPERIENCE)" +
-                    " VALUES(@NAME, @RACE, @STRENGTH, @DEXTERITY, @CONSTITUTION, @INTELLIGENCE, @WISDOM, @CHARISMA, @LEVEL, @EXPERIENCE);";
+                saveChar.CommandText = "INSERT INTO saved_characters3(NAME, RACE, STRENGTH, DEXTERITY, CONSTITUTION, INTELLIGENCE, WISDOM, CHARISMA, LEVEL, EXPERIENCE, EXPERIENCENEXT)" +
+                    " VALUES(@NAME, @RACE, @STRENGTH, @DEXTERITY, @CONSTITUTION, @INTELLIGENCE, @WISDOM, @CHARISMA, @LEVEL, @EXPERIENCE, @EXPERIENCENEXT);";
                 saveChar.Parameters.AddWithValue("@NAME", CharName.Text);
                 saveChar.Parameters.AddWithValue("@RACE", RaceSelectBox.Text);
                 saveChar.Parameters.AddWithValue("@STRENGTH", Convert.ToInt32(StrengthValue.Text));
@@ -738,6 +738,7 @@ namespace WindowsFormsApp2
                 saveChar.Parameters.AddWithValue("@CHARISMA", Convert.ToInt32(CharismaValue.Text));
                 saveChar.Parameters.AddWithValue("@LEVEL", Convert.ToInt32(1));
                 saveChar.Parameters.AddWithValue("@EXPERIENCE", Convert.ToInt32(0));
+                saveChar.Parameters.AddWithValue("@EXPERIENCENEXT", Convert.ToInt32(100));
                 saveChar.Prepare();
                 saveChar.ExecuteNonQuery();
 

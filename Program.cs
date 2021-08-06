@@ -46,9 +46,9 @@ namespace WindowsFormsApp2
             try
             {
                 SQLiteCommand cmd;
-                string createTable = "CREATE TABLE IF NOT EXISTS saved_characters2(ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                string createTable = "CREATE TABLE IF NOT EXISTS saved_characters3(ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "NAME VARCHAR(30) NOT NULL, RACE VARCHAR(30) NOT NULL, STRENGTH INT, DEXTERITY INT, " +
-                    "CONSTITUTION INT, INTELLIGENCE INT, WISDOM INT, CHARISMA INT, LEVEL INT, EXPERIENCE INT);";
+                    "CONSTITUTION INT, INTELLIGENCE INT, WISDOM INT, CHARISMA INT, LEVEL INT, EXPERIENCE INT, EXPERIENCENEXT);";
                 cmd = conn.CreateCommand();
                 cmd.CommandText = createTable;
                 cmd.ExecuteNonQuery();

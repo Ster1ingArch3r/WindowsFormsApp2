@@ -17,7 +17,7 @@ namespace WindowsFormsApp2
         {
             SQLiteConnection conn = new SQLiteConnection("Data Source=characters.db;Version=3;Compress=True;");
             conn.Open();
-            SQLiteCommand cmd = new SQLiteCommand("SELECT * FROM saved_characters2;", conn);
+            SQLiteCommand cmd = new SQLiteCommand("SELECT * FROM saved_characters3;", conn);
             using (SQLiteDataReader read = cmd.ExecuteReader())
             {
                 while (read.Read())
@@ -40,7 +40,7 @@ namespace WindowsFormsApp2
                 int ID = Convert.ToInt32(charData.Rows[charData.CurrentRow.Index].Cells[0].Value);
                 SQLiteConnection conn = new SQLiteConnection("Data Source=characters.db;Version=3;Compress=True;");
                 conn.Open();
-                SQLiteCommand cmd = new SQLiteCommand($"SELECT * FROM saved_characters2 WHERE ID = {ID};", conn);
+                SQLiteCommand cmd = new SQLiteCommand($"SELECT * FROM saved_characters3 WHERE ID = {ID};", conn);
                 using (SQLiteDataReader read = cmd.ExecuteReader())
                 {
                     while (read.Read())
@@ -55,6 +55,8 @@ namespace WindowsFormsApp2
                         IntelligenceBox.Text = (read["INTELLIGENCE"].ToString());
                         WisdomBox.Text = (read["WISDOM"].ToString());
                         CharismaBox.Text = (read["CHARISMA"].ToString());
+                        TotalNeeded.Text = (read["EXPERIENCENEXT"].ToString());
+
 
                     }
                     conn.Close();
@@ -103,7 +105,40 @@ namespace WindowsFormsApp2
 
         private void SaveProgress_Click(object sender, EventArgs e)
         {
+            try
+            {
+                int ID = Convert.ToInt32(charData.Rows[charData.CurrentRow.Index].Cells[0].Value);
+                SQLiteConnection conn = new SQLiteConnection("Data Source=characters.db;Version=3;Compress=True;");
+                conn.Open();
+                SQLiteCommand cmd = new SQLiteCommand($"UPDATE saved_characters3 SET NAME = @NAME, RACE = @RACE, STRENGTH=@STRENGTH, DEXTERITY=@DEXTERITY," +
+                    $"CONSTITUTION=@CONSTITUTION, INTELLIGENCE=@INTELLIGENCE, WISDOM=@WISDOM, CHARISMA=@CHARISMA, LEVEL=@LEVEL, EXPERIENCE=@EXPERIENCE, EXP" +
+                    $"ERIENCENEXT=@EXPERIENCENEXT WHERE ID = {ID};", conn);
 
+
+                cmd.Parameters.AddWithValue("@NAME", NameBox.Text);
+                cmd.Parameters.AddWithValue("@RACE", RaceBox.Text);
+                cmd.Parameters.AddWithValue("@STRENGTH", Convert.ToInt32(StrengthBox.Text));
+                cmd.Parameters.AddWithValue("@DEXTERITY", Convert.ToInt32(DexterityBox.Text));
+                cmd.Parameters.AddWithValue("@CONSTITUTION", Convert.ToInt32(ConstitutionBox.Text));
+                cmd.Parameters.AddWithValue("@INTELLIGENCE", Convert.ToInt32(IntelligenceBox.Text));
+                cmd.Parameters.AddWithValue("@WISDOM", Convert.ToInt32(WisdomBox.Text));
+                cmd.Parameters.AddWithValue("@CHARISMA", Convert.ToInt32(CharismaBox.Text));
+                cmd.Parameters.AddWithValue("@LEVEL", Convert.ToInt32(LevelBox.Text));
+                cmd.Parameters.AddWithValue("@EXPERIENCE", Convert.ToInt32(TotalXp.Text));
+                cmd.Parameters.AddWithValue("@EXPERIENCENEXT", Convert.ToInt32(TotalNeeded.Text));
+                cmd.Prepare();
+                cmd.ExecuteNonQuery();
+
+                MessageBox.Show("Your Progress has been saved successfully!");
+
+                conn.Close();
+
+
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show(Convert.ToString(ex));
+            }
         }
     }
 }
