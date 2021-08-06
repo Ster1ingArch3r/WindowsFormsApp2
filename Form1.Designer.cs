@@ -265,6 +265,7 @@ namespace WindowsFormsApp2
             this.tableLayoutPanel2.Controls.Add(this.NameLabel, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.label4, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.Strength, 0, 5);
+            this.tableLayoutPanel2.Controls.Add(this.SpendBox, 7, 12);
             this.tableLayoutPanel2.Controls.Add(this.Dexterity, 0, 6);
             this.tableLayoutPanel2.Controls.Add(this.Constitution, 0, 7);
             this.tableLayoutPanel2.Controls.Add(this.Intelligence, 0, 8);
@@ -282,7 +283,6 @@ namespace WindowsFormsApp2
             this.tableLayoutPanel2.Controls.Add(this.DicePanel, 5, 2);
             this.tableLayoutPanel2.Controls.Add(this.SaveProgress, 0, 12);
             this.tableLayoutPanel2.Controls.Add(this.SpendablePts, 5, 12);
-            this.tableLayoutPanel2.Controls.Add(this.SpendBox, 7, 12);
             this.tableLayoutPanel2.Controls.Add(this.SpendButton, 8, 12);
             this.tableLayoutPanel2.Controls.Add(this.ExpAdd, 5, 13);
             this.tableLayoutPanel2.Controls.Add(this.ExpAddBox, 7, 13);
